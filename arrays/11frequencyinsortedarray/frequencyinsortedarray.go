@@ -1,22 +1,23 @@
-package frequencyinsortedarray
+package main
 
 import (
 	"fmt"
 )
 
 func FrequencyInSortedArray(nums []int) {
-	elementIndex := 0
-	var newElementIndex int
-	for i:=1; i<len(nums); i++ {
-		if nums[i] != nums[elementIndex] {
-			newElementIndex = i
-			fmt.Printf("Element %v has Frequency %d", nums[elementIndex], newElementIndex - elementIndex)
-			elementIndex = newElementIndex
+	freq := 1
+	i := 1 
+	for i < len(nums) {
+		for i < len(nums) && nums[i] == nums[i-1] {
+			freq++;
+			i++;
 		}
+		fmt.Printf("Element %v has Frequency %v \n", nums[i-1], freq)
+		i++;
+		freq = 1;
+	}
 
-		if i == len(nums) - 1 {
-			newElementIndex = len(nums)
-			fmt.Printf("Element %v has Frequency %d", nums[elementIndex], newElementIndex - elementIndex)
-		}
+	if len(nums) == 1 || nums[len(nums) - 1] != nums[len(nums) - 2] {
+		fmt.Printf("Element %v has Frequency 1 \n", nums[len(nums) - 1])
 	}
 }
